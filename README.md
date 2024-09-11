@@ -25,6 +25,9 @@ ansible myservers -m ping -u pi --ask-pass
 which sshpass
 ```
 
+TODOs
+* Write a python 3 script to automate the setup of ansible on Raspberry Pi
+
 ## Reference
 * [full example](https://qmacro.org/blog/posts/2020/04/05/initial-pi-configuration-via-ansible/)
 * [git repo](https://github.com/mkuthan/raspberry-ansible)
