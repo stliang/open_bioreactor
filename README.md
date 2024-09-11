@@ -11,6 +11,6 @@ sudo apt install -y ansible
 ansible --version 
 ```
 ## Reference
-[abc](https://qmacro.org/blog/posts/2020/04/05/initial-pi-configuration-via-ansible/)
-https://github.com/mkuthan/raspberry-ansible
-https://medium.com/@tisutisu/installing-ansible-on-a-raspberry-pi-cc3ea79edc05
+* [fuill example](https://qmacro.org/blog/posts/2020/04/05/initial-pi-configuration-via-ansible/)
+* [git repo](https://github.com/mkuthan/raspberry-ansible)
+* [simple example](https://medium.com/@tisutisu/installing-ansible-on-a-raspberry-pi-cc3ea79edc05)
