@@ -26,9 +26,11 @@ which sshpass
 ```
 
 TODOs
-* Write a python 3 script to automate the setup of ansible on Raspberry Pi
+* Write a python 3 script to automate the setup PXE Boot server for Raspberry Pi
+* If there is automation gap PXE left, then write a python 3 script to automate ansible setup for Raspberry Pi
 
 ## Reference
 * [full example](https://qmacro.org/blog/posts/2020/04/05/initial-pi-configuration-via-ansible/)
 * [git repo](https://github.com/mkuthan/raspberry-ansible)
 * [simple example](https://medium.com/@tisutisu/installing-ansible-on-a-raspberry-pi-cc3ea79edc05)
+* [PXE Boot](https://www.howtoraspberry.com/2022/03/how-to-pxe-boot-a-raspberry/)
