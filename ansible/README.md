@@ -29,7 +29,7 @@ raspberry_1 | SUCCESS => {
 
 # Create a playbook
 
-Save below file as clone.yaml
+Save below file as setup.yaml
 ```
 ---
  - hosts: all
@@ -40,9 +40,11 @@ Save below file as clone.yaml
        dest: /home/stliang/repos/AtlasScientific/Raspberry-Pi-sample-code
        clone: yes
        update: yes
+   - name: Install prometheus-client python package
+     ansible.builtin.pip:
+       name: prometheus-client
 ```
 Run the playbook
 ```
-ansible-playbook clone.yaml
+ansible-playbook setup.yaml
 ```
-
