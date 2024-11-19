@@ -35,11 +35,8 @@ Save below file as setup.yaml
  - hosts: all
    tasks:
    - name: Clone a github repository
-     git:
-       repo: https://github.com/stliang/Raspberry-Pi-sample-code.git
-       dest: /home/stliang/repos/AtlasScientific/Raspberry-Pi-sample-code
-       clone: yes
-       update: yes
+     command: sudo git clone https://github.com/stliang/Raspberry-Pi-sample-code.git /opt/prometheus_ph
+
    - name: Install prometheus-client python package
      ansible.builtin.pip:
        name: prometheus-client
