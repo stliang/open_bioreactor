@@ -9,6 +9,14 @@
      command: sudo git clone https://github.com/stliang/Raspberry-Pi-sample-code.git /opt/prometheus_ph
      when: not clone_stat.stat.exists
 
+   - name: stat clone
+     stat: path=/opt/open_bioreactor
+     register: clone_stat
+
+   - name: Clone a github repository
+     command: sudo git clone https://github.com/stliang/open_bioreactor.git /opt/open_bioreactor
+     when: not clone_stat.stat.exists
+
    - name: Install prometheus-client python package
      ansible.builtin.pip:
        name: prometheus-client
