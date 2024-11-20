@@ -27,26 +27,7 @@ raspberry_1 | SUCCESS => {
 }
 ```
 
-# Create a playbook
-
-Save below file as setup.yaml
-```
----
- - hosts: all
-   tasks:
-   - name: stat clone
-     stat: path=/opt/prometheus_ph
-     register: clone_stat
-
-   - name: Clone a github repository
-     command: sudo git clone https://github.com/stliang/Raspberry-Pi-sample-code.git /opt/prometheus_ph
-     when: not clone_stat.stat.exists
-
-   - name: Install prometheus-client python package
-     ansible.builtin.pip:
-       name: prometheus-client
-```
-Run the playbook
+# Run the playbook
 ```
 ansible-playbook setup.yaml
 ```
