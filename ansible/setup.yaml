@@ -1,22 +1,42 @@
----
- - hosts: all
-   tasks:
-   - name: stat clone
-     stat: path=/opt/prometheus_ph
-     register: clone_stat
+- name: Manage Linux Service
+  hosts: all
+  become: true
+  tasks:
+    - name: Clone open_bioreactor state
+      ansible.builtin.stat:
+        path: /opt/open_bioreactor
+      register: clone_stat
 
-   - name: Clone a github repository
-     command: sudo git clone https://github.com/stliang/Raspberry-Pi-sample-code.git /opt/prometheus_ph
-     when: not clone_stat.stat.exists
+    - name: Clone a github repository
+      ansible.builtin.git:
+        repo: https://github.com/stliang/open_bioreactor.git
+        dest: /opt/open_bioreactor
+        version: main
+        clone: true
+        update: true
+      when: not clone_stat.stat.exists
 
-   - name: stat clone
-     stat: path=/opt/open_bioreactor
-     register: clone_stat
+    - name: Copy systemd service file
+      ansible.builtin.copy:
+        src: /opt/open_bioreactor/prometheus_ph/ph_sensor.service
+        dest: /etc/systemd/system/ph_sensor.service
+        owner: root
+        group: root
+        mode: '0644'
 
-   - name: Clone a github repository
-     command: sudo git clone https://github.com/stliang/open_bioreactor.git /opt/open_bioreactor
-     when: not clone_stat.stat.exists
+    # - name: Reload systemd daemon
+    #   command: systemctl daemon-reload
 
-   - name: Install prometheus-client python package
-     ansible.builtin.pip:
-       name: prometheus-client
+    # - name: Enable the service
+    #   systemd:
+    #     name: ph_sensor
+    #     enabled: yes
+
+    # - name: Start the service
+    #   systemd:
+    #     name: ph_sensor
+    #     state: started
+
+    # - name: Install prometheus-client python package
+    #   ansible.builtin.pip:
+    #     name: prometheus-client
