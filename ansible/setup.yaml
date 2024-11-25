@@ -2,11 +2,6 @@
   hosts: all
   become: true
   tasks:
-    - name: Clone open_bioreactor state
-      ansible.builtin.stat:
-        path: /opt/open_bioreactor
-      register: clone_stat
-
     - name: Clone a github repository
       ansible.builtin.git:
         repo: https://github.com/stliang/open_bioreactor.git
@@ -14,7 +9,6 @@
         version: main
         clone: true
         update: true
-      when: not clone_stat.stat.exists
 
     - name: Copy systemd service file
       ansible.builtin.copy:
