@@ -1,6 +1,7 @@
 - name: Manage Linux Service
   hosts: all
   become: true
+  become_user: root
   tasks:
     - name: Clone a github repository
       ansible.builtin.git:
@@ -9,28 +10,20 @@
         version: main
         clone: true
         update: true
+      register: clone_result
 
-    - name: Copy systemd service file
-      ansible.builtin.copy:
-        src: /opt/open_bioreactor/prometheus_ph/ph_sensor.service
-        dest: /etc/systemd/system/ph_sensor.service
-        owner: root
-        group: root
-        mode: '0644'
+    - name: Update ph_sensor service file
+      ansible.builtin.command:
+        cmd: cp /opt/open_bioreactor/prometheus_ph/ph_sensor.service /etc/systemd/system/
+      changed_when: clone_result.changed
 
-    # - name: Reload systemd daemon
-    #   command: systemctl daemon-reload
+    - name: Enable the service
+      ansible.builtin.systemd_service:
+        name: ph_sensor
+        daemon_reload: true
+        enabled: true
+        state: started
 
-    # - name: Enable the service
-    #   systemd:
-    #     name: ph_sensor
-    #     enabled: yes
-
-    # - name: Start the service
-    #   systemd:
-    #     name: ph_sensor
-    #     state: started
-
-    # - name: Install prometheus-client python package
-    #   ansible.builtin.pip:
-    #     name: prometheus-client
+    - name: Install prometheus-client python package
+      ansible.builtin.pip:
+        name: prometheus-client
