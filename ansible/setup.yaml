@@ -17,7 +17,7 @@
         cmd: cp /opt/open_bioreactor/prometheus_ph/ph_sensor.service /etc/systemd/system/
       changed_when: clone_result.changed
 
-    - name: Enable the service
+    - name: Enable the ph_sensor service
       ansible.builtin.systemd_service:
         name: ph_sensor
         daemon_reload: true
