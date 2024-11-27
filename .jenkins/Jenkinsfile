@@ -3,7 +3,12 @@ pipeline {
     stages {
         stage('Deploy') {
             steps {
-                echo 'Deploying the application...'
+                sh '''
+                echo "Step 1: Listing files"
+                ls -la
+                echo "Step 2: Showing current directory"
+                pwd
+                '''
             }
         }
     }
