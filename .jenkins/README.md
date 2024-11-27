@@ -4,5 +4,5 @@ Go to Manage Jenkins → Manage Nodes
 Under Node Properties, check Environment variables.
 Add or update the PATH variable to include the directory where ansible-playbook is installed. For example:
 ```
-/opt/homebrew/bin
+/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 ```
