@@ -14,7 +14,7 @@
 
     - name: Update ph_sensor service file
       ansible.builtin.command:
-        cmd: cp /opt/open_bioreactor/prometheus_ph/ph_sensor.service /etc/systemd/system/
+        cmd: cp /opt/open_bioreactor/sensor/prometheus_ph/ph_sensor.service /etc/systemd/system/
       changed_when: clone_result.changed
 
     - name: Enable the ph_sensor service

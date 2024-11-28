@@ -1,0 +1,8 @@
+[Unit]
+Description=Simple HTTP Service to measure pH via local Atlas Scientific sensor
+
+[Service]
+ExecStart=/usr/bin/python /opt/open_bioreactor/prometheus_ph/exporter.py
+
+[Install]
+WantedBy=multi-user.target
