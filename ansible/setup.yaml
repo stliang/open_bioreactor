@@ -12,14 +12,14 @@
         update: true
       register: clone_result
 
-    - name: Update ph_sensor service file
+    - name: Update sensor service file
       ansible.builtin.command:
-        cmd: cp /opt/open_bioreactor/sensor/ph/ph_sensor.service /etc/systemd/system/
+        cmd: cp /opt/open_bioreactor/sensor/sensor_service/sensor.service /etc/systemd/system/
       changed_when: clone_result.changed
 
-    - name: Enable the ph_sensor service
+    - name: Enable the sensor service
       ansible.builtin.systemd_service:
-        name: ph_sensor
+        name: sensor_service
         daemon_reload: true
         enabled: true
         state: started

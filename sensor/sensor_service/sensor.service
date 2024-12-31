@@ -1,0 +1,8 @@
+[Unit]
+Description=Atlas Scientific sensor exporter for Prometheus
+
+[Service]
+ExecStart=/usr/bin/python /opt/open_bioreactor/sensor/sensor_service/exporter.py
+
+[Install]
+WantedBy=multi-user.target
