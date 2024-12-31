@@ -110,6 +110,11 @@ scrape_configs:
     - targets: ["192.168.1.147:5000"]
 ```
 
+Restart Promethus
+```
+brew services restart prometheus
+```
+
 
 TODOs
 * Write a python 3 script to automate the setup PXE Boot server for Raspberry Pi
