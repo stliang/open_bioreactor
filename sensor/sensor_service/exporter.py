@@ -61,15 +61,16 @@ def register_prometheus_gauges():
     PH = Gauge(
         'ph',
         'pH reading from Atlas Scientific',
-        ["Sensor_ID"]
+        ["id"]
     )
-    PH.labels(str("Atlas Scientific #1")).set_function(get_ph)
+    PH.labels(str("Atlas Scientific ph")).set_function(get_ph)
+
     TEMP_F = Gauge(
-        'Fahrenheit',
-        'Fahrenheit reading from Atlas Scientific',
-        ["Sensor_ID"]
+        'temperature',
+        'temperature reading from Atlas Scientific',
+        ["id", "unit"]
     )
-    TEMP_F.labels(str("Atlas Scientific #2")).set_function(get_temperature_f)
+    TEMP_F.labels(id='Atlas Scientific temp', unit='fahrenheit').set_function(get_temperature_f)
 
 if __name__ == "__main__":
     start_http_server(5000)
