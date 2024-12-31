@@ -92,6 +92,25 @@ ansible myservers -m ping -u pi --ask-pass
 which sshpass
 ```
 
+### Install Promethus
+Use homebrew to install Promethus on MacOS
+Configure Promethus
+```
+vi /opt/homebrew/etc/prometheus.yml
+
+global:
+  scrape_interval: 300s
+
+scrape_configs:
+  - job_name: "prometheus"
+    static_configs:
+    - targets: ["localhost:9090"]
+  - job_name: "atlas_scientific_sensors"
+    static_configs:
+    - targets: ["192.168.1.147:5000"]
+```
+
+
 TODOs
 * Write a python 3 script to automate the setup PXE Boot server for Raspberry Pi
 * If there is automation gap PXE left, then write a python 3 script to automate ansible setup for Raspberry Pi
