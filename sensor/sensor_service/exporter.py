@@ -57,6 +57,9 @@ def get_ph():
 def get_temperature_f():
     return read_sensor_at_random(50,80)
 
+def get_dissolved_oxygen_f():
+    return read_sensor_at_random(0,10)
+
 def register_prometheus_gauges():
     PH = Gauge(
         'ph',
@@ -72,6 +75,13 @@ def register_prometheus_gauges():
     )
     TEMP_F.labels(id='Atlas Scientific temp', unit='fahrenheit').set_function(get_temperature_f)
 
+    TEMP_F = Gauge(
+        'dissolved oxygen',
+        'dissolved oxygen reading from Atlas Scientific',
+        ["id", "unit"]
+    )
+    TEMP_F.labels(id='Atlas Scientific DO', unit='mg/L').set_function(get_dissolved_oxygen_f)
+  
 if __name__ == "__main__":
     start_http_server(5000)
     register_prometheus_gauges()
